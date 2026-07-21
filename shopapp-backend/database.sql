@@ -14,3 +14,14 @@ CREATE TABLE users(
     facebook_account_id INT DEFAULT 0,
     google_account_id INT DEFAULT 0
 );
+
+CREATE TABLE tokens(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    token VARCHAR(255) UNIQUE NOT NULL,
+    token_type VARCHAR(50) NOT NULL,
+    expiration_date DATETIME, --ngay het han
+    revoked TINYINT(1) NOT NULL,
+    expired TINYINT(1) NOT NULL,
+    user_id INT, --khoa ngoai
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
