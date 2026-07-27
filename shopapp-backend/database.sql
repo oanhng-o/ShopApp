@@ -62,6 +62,15 @@ CREATE TABLE products(
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
+CREATE TABLE product_images(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+ALTER TABLE product_images ADD COLUMN image_url VARCHAR(300);
+
 CREATE TABLE orders(
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT, --khoa ngoai
