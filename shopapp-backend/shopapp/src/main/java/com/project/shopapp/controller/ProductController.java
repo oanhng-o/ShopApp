@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,8 +37,14 @@ public class ProductController {
                     .toList();
             return ResponseEntity.badRequest().body(errors);
         }
-        MultipartFile file = productDTO.getFile();
-        if(file != null){
+        List<MultipartFile> files = productDTO.getFiles();
+        if (files == null) {
+            files = new ArrayList<MultipartFile>();
+        }
+        for (MultipartFile file : files) {
+            if (file.getSize() == 0) {
+                continue; 
+            }
             if(file.getSize() > 10 * 1024 * 1024) { // 10MB limit
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("File size exceeds the maximum limit of 10MB");
