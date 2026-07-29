@@ -23,7 +23,7 @@ import com.project.shopapp.dtos.ProductDTO;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("${api.prefix}/products")
 public class ProductController {
 
     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

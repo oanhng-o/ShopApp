@@ -11,7 +11,7 @@ import com.project.shopapp.dtos.CategoryDTO;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping("${api.prefix}/categories")
 //@Validated
 public class CategoryController {
 
