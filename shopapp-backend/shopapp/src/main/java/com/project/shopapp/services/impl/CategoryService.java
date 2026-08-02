@@ -11,6 +11,7 @@ import com.project.shopapp.repositories.CategoryRepository;
 import com.project.shopapp.services.ICategoryService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +19,7 @@ public class CategoryService implements ICategoryService {
     private final CategoryRepository categoryRepository;
 
     @Override
+    @Transactional
     public Category createCategory(CategoryDTO category) {
         return categoryRepository.save(CategoryDTO.toEntity(category));
     }
@@ -34,6 +36,7 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
+    @Transactional
     public Category updateCategory(int id, CategoryDTO category) {
         Category existingCategory = getCategoryById(id);
         existingCategory.setName(category.getName());
@@ -41,6 +44,7 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
+    @Transactional
     public void deleteCategory(int id) {
         categoryRepository.deleteById(id);
     }

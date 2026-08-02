@@ -3,7 +3,9 @@ package com.project.shopapp.dtos;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.shopapp.models.Order;
 
+import com.project.shopapp.models.User;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +16,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class OrderDTO {
     @JsonProperty("user_id")
     @NotNull(message = "User ID is required")
