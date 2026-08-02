@@ -1,4 +1,4 @@
-package com.project.shopapp.exception;
+package com.project.shopapp.dtos;
 
 import lombok.*;
 
@@ -6,6 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ExceptionResponse {
     private int statusCode;
     private String error;

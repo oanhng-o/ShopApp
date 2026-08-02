@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.project.shopapp.dtos.CategoryDTO;
-import com.project.shopapp.exception.NotFoundException;
+import com.project.shopapp.exception.ResourceNotFoundException;
 import com.project.shopapp.models.Category;
 import com.project.shopapp.repositories.CategoryRepository;
 import com.project.shopapp.services.ICategoryService;
@@ -25,7 +25,7 @@ public class CategoryService implements ICategoryService {
     @Override
     public Category getCategoryById(int id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Category with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Category with id " + id + " not found"));
     }
 
     @Override
