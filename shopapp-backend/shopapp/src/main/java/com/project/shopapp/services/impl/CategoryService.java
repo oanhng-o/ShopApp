@@ -20,8 +20,9 @@ public class CategoryService implements ICategoryService {
 
     @Override
     @Transactional
-    public Category createCategory(CategoryDTO category) {
-        return categoryRepository.save(CategoryDTO.toEntity(category));
+    public Category createCategory(CategoryDTO categoryDTO) {
+        Category category = Category.builder().name(categoryDTO.getName()).build();
+        return categoryRepository.save(category);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class OrderDTO {
     @JsonProperty("user_id")
     @NotNull(message = "User ID is required")
     @Min(value = 1)
-    private int userId;
+    private Integer userId;
 
     @JsonProperty("full_name")
     private String fullName;

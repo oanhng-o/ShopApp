@@ -17,8 +17,4 @@ import lombok.Setter;
 public class CategoryDTO {
     @NotEmpty(message = "Category name must not be empty")
     private String name;
-
-    public static Category toEntity(CategoryDTO categoryDTO) {
-        return Category.builder().name(categoryDTO.getName()).build();
-    }
 }

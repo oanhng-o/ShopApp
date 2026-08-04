@@ -1,8 +1,8 @@
 package com.project.shopapp.controllers;
 
 import com.project.shopapp.dtos.ApiResponse;
-import com.project.shopapp.dtos.UserDTO;
-import com.project.shopapp.dtos.UserLoginDTO;
+import com.project.shopapp.dtos.users.request.UserRegistrationRequestDTO;
+import com.project.shopapp.dtos.users.request.UserLoginDTO;
 import com.project.shopapp.models.User;
 import com.project.shopapp.services.impl.UserService;
 
@@ -22,13 +22,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse<User>> createUser(@Valid @RequestBody UserDTO userDTO) {
-        if (!Objects.equals(userDTO.getPassword(), userDTO.getRetypePassword())) {
+    public ResponseEntity<ApiResponse<Boolean>> createUser(@Valid @RequestBody UserRegistrationRequestDTO userRegistrationRequestDTO) {
+        if (!Objects.equals(userRegistrationRequestDTO.getPassword(), userRegistrationRequestDTO.getRetypePassword())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ApiResponse.badRequest("Password does not match."));
         }
-        User user = userService.createUser(userDTO);
-        return ResponseEntity.ok(ApiResponse.success("Register successfully", user));
+        return ResponseEntity.ok(ApiResponse.success("Register successfully",
+                userService.createUser(userRegistrationRequestDTO)));
     }
 
     @PostMapping("/login")
@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<User>> updateUser(@PathVariable("id") int id, @RequestBody UserDTO userDTO) {
-        User updatedUser = userService.updateUser(id, userDTO);
+    public ResponseEntity<ApiResponse<User>> updateUser(@PathVariable("id") int id, @RequestBody UserRegistrationRequestDTO userRegistrationRequestDTO) {
+        User updatedUser = userService.updateUser(id, userRegistrationRequestDTO);
         return ResponseEntity.ok(ApiResponse.success(String.format("User updated (ID: %d)", id), updatedUser));
     }
 

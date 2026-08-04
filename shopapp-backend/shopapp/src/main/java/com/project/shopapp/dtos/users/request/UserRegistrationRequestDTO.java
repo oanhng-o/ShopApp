@@ -1,8 +1,6 @@
-package com.project.shopapp.dtos;
+package com.project.shopapp.dtos.users.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.project.shopapp.models.Role;
-import com.project.shopapp.models.User;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +14,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserRegistrationRequestDTO {
     @JsonProperty("fullname")
     private String fullName;
 
@@ -30,6 +28,7 @@ public class UserDTO {
     private String password;
 
     @JsonProperty("retype_password")
+    @NotBlank
     private String retypePassword;
 
     @JsonProperty("date_of_birth")
@@ -43,18 +42,5 @@ public class UserDTO {
 
     @JsonProperty("role_id")
     @NotNull(message = "Role ID is required.")
-    private int roleId;
-
-    public static User toEntity(UserDTO userDTO, Role role) {
-        return User.builder()
-                .fullName(userDTO.getFullName())
-                .phoneNumber(userDTO.getPhoneNumber())
-                .address(userDTO.getAddress())
-                .password(userDTO.getPassword())
-                .dateOfBirth(userDTO.getDateOfBirth())
-                .facebookAccountId(userDTO.getFacebookAccountId())
-                .googleAccountId(userDTO.getGoogleAccountId())
-                .role(role)
-                .build();
-    }
+    private Integer roleId;
 }

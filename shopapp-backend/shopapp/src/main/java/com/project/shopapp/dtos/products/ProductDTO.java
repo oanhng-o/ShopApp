@@ -1,4 +1,4 @@
-package com.project.shopapp.dtos;
+package com.project.shopapp.dtos.products;
 
 import java.util.List;
 
@@ -21,12 +21,13 @@ public class ProductDTO {
     
     @Min(value = 0, message = "Price must be a positive value")
     @Max(value = 100000000, message = "Price must not exceed 100,000,000")
-    private float price;
+    private Float price;
     private String thumbnail;
     private String description;
 
+    @NotNull
     @JsonProperty("category_id")
-    private String categoryId;
+    private Integer categoryId;
 
     private List<MultipartFile> files;
 }
